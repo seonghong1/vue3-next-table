@@ -1,28 +1,36 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import type { ColumnDefs, Options } from "@/types/options";
 
-const items = ref([
-  { id: 1, name: "John Doe", age: 30 },
-  { id: 2, name: "Jane Doe", age: 25 },
-  { id: 3, name: "Jim Doe", age: 40 },
-]);
+const props = defineProps<{
+  tableData: any[];
+  options: Options;
+}>();
+
+const getTdValue = (data: any, col: ColumnDefs) => {
+  if (col.getCustomValue) {
+    return col.getCustomValue(data[col.field]);
+  }
+
+  return data[col.field];
+};
 </script>
 
 <template>
   <div class="table-view-container">
+    <h3>{{ props.options.tableTitle }}</h3>
     <table>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Age</th>
+          <th v-for="col in props.options.columnDefs">
+            {{ col.headerName }}
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
-          <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.age }}</td>
+        <tr v-for="data in props.tableData" :key="data.id">
+          <td v-for="col in props.options.columnDefs">
+            {{ getTdValue(data, col) }}
+          </td>
         </tr>
       </tbody>
     </table>
