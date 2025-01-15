@@ -11,21 +11,40 @@ const tableData = ref([
 ]);
 
 const columnDefs: ColumnDefs[] = [
-  { headerName: "Id", field: "id" },
-  { headerName: "Name", field: "name" },
-  { headerName: "Age", field: "age" },
-  { headerName: "Amount", field: "amount", getCustomValue: (value) => `$${value}` },
+  { headerName: "Id", field: "id", width: 10, cellClassList: ["test1", "test2"] },
+  { headerName: "Name", field: "name", width: 20 },
+  { headerName: "Age", field: "age", width: 30, cellClassList: ["test1"] },
+  {
+    headerName: "Amount",
+    field: "amount",
+    getCustomValue: (value) => `$${value}`,
+    width: 40,
+    onCellClick: (data) => console.log(data),
+  },
 ];
 
 const options: Options = {
+  primaryKey: "id",
   tableTitle: "테이블 제목입니다",
-  perPage: 10,
   columnDefs,
+  pagination: {
+    use: false,
+  },
+  onRowClick: (data: any) => {
+    console.log(data);
+  },
+  rowClassList: ["test1", "test2"],
+  getRowClassList: (data: any) => {
+    console.log(data);
+    return ["test3", "test4"];
+  },
 };
 </script>
 
 <template>
-  <TableView :tableData="tableData" :options="options" />
+  <div style="width: 500px">
+    <TableView :tableData="tableData" :options="options" />
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
