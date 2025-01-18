@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import type { ColumnDefs, Options } from "@/types/options";
+import SwitchableTd from "./td/SwitchableTd.vue";
 
 const props = defineProps<{
   tableData: any[];
   options: Options;
 }>();
-
-const getCellValue = (data: any, col: ColumnDefs) => {
-  if (col.getCustomValue) {
-    return col.getCustomValue(data[col.field]);
-  }
-
-  return data[col.field];
-};
 
 const getCellClassList = (data: any, col: ColumnDefs) => {
   let classList = [];
@@ -48,7 +41,7 @@ const onRowClick = (data: any) => {
 
 const onCellClick = (data: any, col: ColumnDefs) => {
   if (col.onCellClick) {
-    col.onCellClick(data);
+    col.onCellClick(data, col);
   }
 };
 </script>
@@ -79,7 +72,7 @@ const onCellClick = (data: any, col: ColumnDefs) => {
             :class="getCellClassList(data, col)"
             @click="onCellClick(data, col)"
           >
-            {{ getCellValue(data, col) }}
+            <SwitchableTd :data :col="col" />
           </td>
         </tr>
       </tbody>

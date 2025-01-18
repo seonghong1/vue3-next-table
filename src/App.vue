@@ -8,6 +8,10 @@ const tableData = ref([
   { id: 1, name: "John Doe", age: 430, amount: 10000 },
   { id: 2, name: "Jane Doe", age: 235, amount: 10000 },
   { id: 3, name: "Jim Doe", age: 401, amount: 10000 },
+  { id: 3, name: "Jim Doe", age: 401, amount: 10000, editvalue: "stringsss" },
+  { id: 3, name: "Jim Doe", age: 401, amount: 10000, number: 123 },
+  { id: 3, name: "Jim Doe", age: 401, date: "2025-01-18", amount: 10000, number: 123 },
+  { id: 3, name: "Jim Doe", age: 401, date: "2025-01-18", amount: 10000, number: 123, select: 3 },
 ]);
 
 const columnDefs: ColumnDefs[] = [
@@ -19,7 +23,45 @@ const columnDefs: ColumnDefs[] = [
     field: "amount",
     getCustomValue: (value) => `$${value}`,
     width: 40,
-    onCellClick: (data) => console.log(data),
+    onCellClick: (data: any, col: ColumnDefs) => console.log(data, col),
+  },
+  {
+    headerName: "edits",
+    field: "editvalue",
+    width: 30,
+    editable: true,
+    editType: "text",
+    onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
+  },
+  {
+    headerName: "number",
+    field: "number",
+    width: 30,
+    editable: true,
+    editType: "number",
+    onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
+  },
+  {
+    headerName: "date",
+    field: "date",
+    width: 30,
+    editable: true,
+    editType: "date",
+    onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
+  },
+  {
+    headerName: "select",
+    field: "select",
+    width: 30,
+    editable: true,
+    editType: "select",
+    editSelectOptions: [
+      { value: 1, label: "1" },
+      { value: 2, label: "2" },
+      { value: 3, label: "3" },
+      { value: 4, label: "4" },
+    ],
+    onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
   },
 ];
 
