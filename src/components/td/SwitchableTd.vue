@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ColumnDefs } from "@/types/options";
 
+import CellRenderer from "./CellRenderer.vue";
 import EditDate from "./EditDate.vue";
 import EditNumber from "./EditNumber.vue";
 import EditSelect from "./EditSelect.vue";
@@ -30,6 +31,9 @@ const changeInputValue = (e: Event): void => {
 </script>
 
 <template>
+  <template v-if="col.cellRenderer">
+    <CellRenderer :data="data" :col="col" />
+  </template>
   <template v-if="col.editable">
     <EditDate
       v-if="col.editType === 'date'"

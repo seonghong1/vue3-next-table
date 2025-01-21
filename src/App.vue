@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import TableView from "@/components/TableView.vue";
 import type { Options } from "@/types/options";
+import TestRenderer from "@/TestRenderer.vue";
 import type { ColumnDefs } from "@/types/options";
 
 const tableData = ref([
@@ -62,6 +63,22 @@ const columnDefs: ColumnDefs[] = [
       { value: 4, label: "4" },
     ],
     onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
+  },
+  {
+    headerName: "cellRenderer",
+    field: "",
+    width: 30,
+    cellRenderer: (data: any, col: ColumnDefs) => {
+      return `<button onclick="console.log('cellRenderer', ${data.id})">Click</button>`;
+    },
+  },
+  {
+    headerName: "cellRenderer2",
+    field: "",
+    width: 30,
+    cellRenderer: (data: any, col: ColumnDefs) => {
+      return TestRenderer;
+    },
   },
 ];
 

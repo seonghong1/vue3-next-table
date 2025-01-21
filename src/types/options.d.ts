@@ -1,3 +1,5 @@
+import { Component } from "vue";
+
 export interface Options {
   primaryKey: string; // -> 1차완료
   columnDefs: ColumnDefs[];
@@ -27,5 +29,5 @@ export interface ColumnDefs {
   getCellClassList?: (data: any) => string[]; // -> 1차완료
   onCellClick?: (data: any, col: ColumnDefs) => void; // -> 1차완료
   onEditCellChange?: (data: any, col: ColumnDefs) => void; // -> 2025-01-18
-  cellRenderer?: (data: any) => string;
+  cellRenderer?: (data: any, col: ColumnDefs) => string | Component; // -> 2025-01-21
 }
