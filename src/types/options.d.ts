@@ -5,10 +5,12 @@ export interface Options {
   columnDefs: ColumnDefs[];
   pagination: {
     use: boolean;
+    totalCount?: number;
     visiblePages?: number;
     perPage?: number;
     perPageOptions?: number[];
     onPageChange?: (page: number) => void;
+    onPerPageChange?: (perPage: number) => void;
   };
   tableTitle?: string; // -> 1차완료
   onRowClick?: (data: any) => void; // -> 1차완료

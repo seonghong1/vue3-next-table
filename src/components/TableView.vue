@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ColumnDefs, Options } from "@/types/options";
 import SwitchableTd from "./td/SwitchableTd.vue";
+import Pagination from "./pagination/Pagination.vue";
+import PerPageSelect from "./pagination/PerPageSelect.vue";
 
 const props = defineProps<{
   tableData: any[];
@@ -77,6 +79,10 @@ const onCellClick = (data: any, col: ColumnDefs) => {
         </tr>
       </tbody>
     </table>
+    <div v-if="props.options.pagination.use">
+      <Pagination :options="props.options" />
+      <PerPageSelect v-if="props.options.pagination.perPageOptions" :options="props.options" />
+    </div>
   </div>
 </template>
 

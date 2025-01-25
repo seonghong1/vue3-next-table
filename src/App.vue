@@ -7,6 +7,14 @@ import type { ColumnDefs } from "@/types/options";
 
 const tableData = ref([
   { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
+  { id: 1, name: "John Doe", age: 430, amount: 10000 },
   { id: 2, name: "Jane Doe", age: 235, amount: 10000 },
   { id: 3, name: "Jim Doe", age: 401, amount: 10000 },
   { id: 3, name: "Jim Doe", age: 401, amount: 10000, editvalue: "stringsss" },
@@ -87,7 +95,17 @@ const options: Options = {
   tableTitle: "테이블 제목입니다",
   columnDefs,
   pagination: {
-    use: false,
+    use: true,
+    totalCount: tableData.value.length,
+    visiblePages: 2,
+    perPage: 3,
+    perPageOptions: [1, 2, 3, 4, 5],
+    onPageChange: (page: number) => {
+      console.log("page : ", page);
+    },
+    onPerPageChange: (perPage: number) => {
+      console.log(perPage);
+    },
   },
   onRowClick: (data: any) => {
     console.log(data);
