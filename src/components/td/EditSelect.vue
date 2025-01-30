@@ -21,4 +21,8 @@ const props = defineProps<{
   </select>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+select {
+  padding: 5px;
+}
+</style>

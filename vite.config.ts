@@ -9,4 +9,11 @@ export default defineConfig({
       "@": "/src", // @를 src 폴더로 매핑
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/variables.scss";`,
+      },
+    },
+  },
 });

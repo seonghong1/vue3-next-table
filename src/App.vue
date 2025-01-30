@@ -31,13 +31,13 @@ const columnDefs: ColumnDefs[] = [
     headerName: "Amount",
     field: "amount",
     getCustomValue: (value) => `$${value}`,
-    width: 40,
+    width: 10,
     onCellClick: (data: any, col: ColumnDefs) => console.log(data, col),
   },
   {
     headerName: "edits",
     field: "editvalue",
-    width: 30,
+    width: 10,
     editable: true,
     editType: "text",
     onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
@@ -45,7 +45,7 @@ const columnDefs: ColumnDefs[] = [
   {
     headerName: "number",
     field: "number",
-    width: 30,
+    width: 10,
     editable: true,
     editType: "number",
     onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
@@ -53,7 +53,7 @@ const columnDefs: ColumnDefs[] = [
   {
     headerName: "date",
     field: "date",
-    width: 30,
+    width: 10,
     editable: true,
     editType: "date",
     onEditCellChange: (data: any, col: ColumnDefs) => console.log(data, col),
@@ -61,7 +61,7 @@ const columnDefs: ColumnDefs[] = [
   {
     headerName: "select",
     field: "select",
-    width: 30,
+    width: 20,
     editable: true,
     editType: "select",
     editSelectOptions: [
@@ -75,7 +75,7 @@ const columnDefs: ColumnDefs[] = [
   {
     headerName: "cellRenderer",
     field: "",
-    width: 30,
+    width: 20,
     cellRenderer: (data: any, col: ColumnDefs) => {
       return `<button onclick="console.log('cellRenderer', ${data.id})">Click</button>`;
     },
@@ -83,14 +83,14 @@ const columnDefs: ColumnDefs[] = [
   {
     headerName: "cellRenderer2",
     field: "",
-    width: 30,
+    width: 20,
     cellRenderer: (data: any, col: ColumnDefs) => {
       return TestRenderer;
     },
   },
 ];
 
-const options: Options = {
+const options = ref({
   primaryKey: "id",
   tableTitle: "테이블 제목입니다",
   columnDefs,
@@ -115,11 +115,20 @@ const options: Options = {
     console.log(data);
     return ["test3", "test4"];
   },
-};
+});
 </script>
 
 <template>
-  <div style="width: 500px">
+  <button
+    @click="
+      () => {
+        console.log(options);
+      }
+    "
+  >
+    현재 options 상태값
+  </button>
+  <div style="width: 1000px">
     <TableView :tableData="tableData" :options="options" />
   </div>
 </template>

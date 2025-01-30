@@ -11,6 +11,7 @@ const onPerPageChange = (e: Event) => {
     const selectedValue = target.value;
 
     props.options.pagination.onPerPageChange(Number(selectedValue));
+    props.options.pagination.perPage = Number(selectedValue);
   }
 };
 </script>
@@ -23,4 +24,10 @@ const onPerPageChange = (e: Event) => {
   </select>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+select {
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: $color-gray;
+}
+</style>

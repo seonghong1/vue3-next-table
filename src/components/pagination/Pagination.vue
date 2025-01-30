@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Options } from "@/types/options";
 import { computed, ref } from "vue";
+import PerPageSelect from "./PerPageSelect.vue";
 
 const props = defineProps<{
   options: Options;
@@ -69,16 +70,65 @@ const onPrevOrNextClick = (type: "prev" | "next") => {
   <div class="pagination-container">
     <button @click="onPrevOrNextClick('prev')">Prev</button>
     <ul class="pagination-list">
-      <li v-for="i in currentVisiblePages" :key="i" @click="setCurrentPage(i)">{{ i }}</li>
+      <li
+        v-for="i in currentVisiblePages"
+        :key="i"
+        @click="setCurrentPage(i)"
+        :class="[{ on: currentPage === i }]"
+      >
+        {{ i }}
+      </li>
     </ul>
     <button @click="onPrevOrNextClick('next')">Next</button>
+    <div v-if="props.options.pagination.perPageOptions" class="pagination-per-page">
+      <PerPageSelect :options="props.options" />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.pagination-list {
-  display: flex;
-  gap: 20px;
-  list-style: none;
+.pagination {
+  &-container {
+    padding: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    button {
+      cursor: pointer;
+      background-color: $color-gray;
+      color: $color-white;
+    }
+  }
+
+  &-list {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      color: $color-gray;
+      padding: 10px;
+      border-radius: 8px;
+      opacity: 0.7;
+
+      &.on,
+      &:hover {
+        opacity: 1;
+        box-shadow: 0 0 0 1px $color-gray inset;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &-per-page {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 </style>

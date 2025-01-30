@@ -33,3 +33,6 @@ export interface ColumnDefs {
   onEditCellChange?: (data: any, col: ColumnDefs) => void; // -> 2025-01-18
   cellRenderer?: (data: any, col: ColumnDefs) => string | Component; // -> 2025-01-21
 }
+
+// 페이지네이션
+// 페이지네이션 값이 변경될때 currentPage 초기회 및 visible 되는 페이지 변경 테스트 필요

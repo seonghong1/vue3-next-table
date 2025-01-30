@@ -2,7 +2,6 @@
 import type { ColumnDefs, Options } from "@/types/options";
 import SwitchableTd from "./td/SwitchableTd.vue";
 import Pagination from "./pagination/Pagination.vue";
-import PerPageSelect from "./pagination/PerPageSelect.vue";
 
 const props = defineProps<{
   tableData: any[];
@@ -49,15 +48,12 @@ const onCellClick = (data: any, col: ColumnDefs) => {
 </script>
 
 <template>
-  <div class="table-view-container">
-    <h3 v-if="props.options.tableTitle">{{ props.options.tableTitle }}</h3>
+  <div class="table-container">
+    <h3 v-if="props.options.tableTitle" class="table-title">{{ props.options.tableTitle }}</h3>
     <table>
       <thead>
         <tr>
-          <th
-            v-for="col in props.options.columnDefs"
-            :style="[{ width: col.width ? `${col.width}%` : 'auto' }]"
-          >
+          <th v-for="col in props.options.columnDefs">
             {{ col.headerName }}
           </th>
         </tr>
@@ -71,6 +67,7 @@ const onCellClick = (data: any, col: ColumnDefs) => {
         >
           <td
             v-for="col in props.options.columnDefs"
+            :style="[{ width: col.width ? `${col.width}%` : 'auto' }]"
             :class="getCellClassList(data, col)"
             @click="onCellClick(data, col)"
           >
@@ -79,26 +76,66 @@ const onCellClick = (data: any, col: ColumnDefs) => {
         </tr>
       </tbody>
     </table>
-    <div v-if="props.options.pagination.use">
+    <template v-if="props.options.pagination.use">
       <Pagination :options="props.options" />
-      <PerPageSelect v-if="props.options.pagination.perPageOptions" :options="props.options" />
-    </div>
+    </template>
   </div>
 </template>
 
 <style scoped lang="scss">
-.table-view-container {
-  width: 100%;
-
-  table {
+.table {
+  &-container {
     width: 100%;
-  }
-}
-h1 {
-  color: red;
+    border-radius: 10px;
+    border: 1px solid $color-light-gray;
+    box-sizing: border-box;
 
-  span {
-    color: blue;
+    table {
+      width: 100%;
+
+      thead {
+        width: 100%;
+        background-color: $color-light-gray-2;
+        border-bottom: 1px solid $color-light-gray;
+
+        th {
+          padding: 10px 0;
+
+          &:not(:last-child) {
+            border-right: 1px solid $color-light-gray;
+          }
+        }
+      }
+
+      tbody {
+        width: 100%;
+        border-bottom: 1px solid $color-light-gray;
+
+        tr {
+          &:not(:last-child) {
+            border-bottom: 1px solid $color-light-gray-2;
+          }
+
+          td {
+            padding: 5px 0;
+            text-align: center;
+
+            &:not(:last-child) {
+              border-right: 1px solid $color-light-gray;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-title {
+    background-color: $color-gray;
+    font-size: 18px;
+    text-align: left;
+    padding: 15px 10px;
+    color: $color-white;
+    border-radius: 10px 10px 0 0;
   }
 }
 </style>
