@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": ".", // 프로젝트 루트 기준
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+
+    "resolveJsonModule": true,
+    "allowJs": true,
+
+    "declaration": true,
+    "outDir": "dist",
+    "noEmit": false, // ✅ 추가: JS 변환 활성화
+    "emitDeclarationOnly": false, // ✅ 추가: JS 파일도 생성하도록 변경
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // @는 src 폴더로 매핑
+      "@/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"]
 }

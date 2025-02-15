@@ -1,20 +1,63 @@
 {
   "name": "vue3-next-table",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.7",
+  "description": "A simple Vue 3 library providing table and pagination components.",
+  "author": {
+    "name": "Zain Jo",
+    "email": "joci0127@naver.com"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/seonghong1/vue3-next-table",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seonghong1/vue3-next-table"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vue components",
+    "vue table",
+    "vue pagination",
+    "table component",
+    "pagination component",
+    "ui framework",
+    "ui library",
+    "data table",
+    "responsive table",
+    "lightweight table",
+    "component library"
+  ],
+  "main": "./dist/vue3-next-table.es.js",
+  "module": "./dist/vue3-next-table.es.js",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/vue3-next-table.es.js",
+      "require": "./dist/vue3-next-table.cjs.js",
+      "default": "./dist/index.js"
+    },
+    "./style.css": "./dist/vue3-next-table.css"
+  },
+  "browser": {
+    ".": "./dist/vue3-next-table.es.js"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "test": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "vue": "^3.5.13"
+    "vite-plugin-vue": "^0.0.1",
+    "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/node": "^18.7.14",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "sass": "^1.83.1",
+    "tslib": "^2.8.1",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"

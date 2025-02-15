@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Options } from "@/types/options";
+import { Options } from "../../types/options";
 import { computed, ref } from "vue";
 import PerPageSelect from "./PerPageSelect.vue";
 
@@ -8,15 +8,17 @@ const props = defineProps<{
 }>();
 
 const totalPageCount = computed(() => {
-  return Math.ceil(props.options.pagination.totalCount / props.options.pagination.perPage);
+  const totalCount = props.options.pagination.totalCount ?? 0;
+  const perPage = props.options.pagination.perPage ?? 1;
+  return Math.ceil(totalCount / perPage);
 });
 
 const currentVisiblePages = computed(() => {
-  const visiblePages = props.options.pagination.visiblePages;
+  const visiblePages = props.options.pagination.visiblePages ?? 1;
   // 총 페이지
-  const totalPageCount = Math.ceil(
-    props.options.pagination.totalCount / props.options.pagination.perPage
-  );
+  const totalCount = props.options.pagination.totalCount ?? 0;
+  const perPage = props.options.pagination.perPage ?? 1;
+  const totalPageCount = Math.ceil(totalCount / perPage);
   // 화면에 보여질 페이지 그룹
   const currentPageGroup = Math.ceil(currentPage.value / visiblePages);
   const startPage = Math.max((currentPageGroup - 1) * visiblePages + 1, 1);

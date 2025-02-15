@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Options } from "@/types/options";
+import { Options } from "../../types/options";
 
 const props = defineProps<{
   options: Options;

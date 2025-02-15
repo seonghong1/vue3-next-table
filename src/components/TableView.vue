@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { ColumnDefs, Options } from "@/types/options";
+import type { ColumnDefs, Options } from "../types/options";
 import SwitchableTd from "./td/SwitchableTd.vue";
 import Pagination from "./pagination/Pagination.vue";
+import "../assets/reset.scss";
 
 const props = defineProps<{
   tableData: any[];
@@ -9,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const getCellClassList = (data: any, col: ColumnDefs) => {
-  let classList = [];
+  let classList: string[] = [];
   if (col.getCellClassList) {
     classList = [...classList, ...col.getCellClassList(data)];
   }
@@ -22,7 +23,7 @@ const getCellClassList = (data: any, col: ColumnDefs) => {
 };
 
 const getRowClassList = (data: any) => {
-  let classList = [];
+  let classList: string[] = [];
   if (props.options.rowClassList) {
     classList = [...classList, ...props.options.rowClassList];
   }

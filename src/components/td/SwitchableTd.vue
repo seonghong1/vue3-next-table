@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ColumnDefs } from "@/types/options";
+import type { ColumnDefs } from "../../types/options";
 
 import CellRenderer from "./CellRenderer.vue";
 import EditDate from "./EditDate.vue";

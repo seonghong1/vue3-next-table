@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ColumnDefs } from "@/types/options";
+import { ColumnDefs } from "../../types/options";
 import { ref } from "vue";
 
 const props = defineProps<{
