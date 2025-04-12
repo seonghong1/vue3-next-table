@@ -1,3 +1,47 @@
+## 🚀 Getting Started
+
+### 📦 Installation
+
+```bash
+npm install vue3-next-table
+```
+
+---
+
+### 🛠️ Usage
+
+```ts
+<script setup lang="ts">
+import { Vue3NextTable } from 'vue3-next-table'
+import type { Options } from 'vue3-next-table'
+
+const tableOptions: Options = {
+  primaryKey: 'id',
+  tableTitle: 'User List',
+  columnDefs: [
+    { headerName: 'ID', field: 'id' },
+    { headerName: 'Name', field: 'name' },
+    { headerName: 'Email', field: 'email' },
+  ],
+  pagination: {
+    use: true,
+    totalCount: 100,
+    perPage: 10,
+    onPageChange: (page) => {
+      console.log('Page changed to:', page)
+    },
+  },
+  onRowClick: (row) => {
+    console.log('Row clicked:', row)
+  },
+}
+</script>
+
+<template>
+  <Vue3NextTable :options="tableOptions" :data="tableData" />
+</template>
+```
+
 ### ✅ `Options` Props
 
 | Prop | Type | Description | Required | Default |
